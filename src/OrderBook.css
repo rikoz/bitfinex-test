@@ -1,0 +1,47 @@
+.widget {
+  width: 100%;
+  min-height: 70vh;
+  background-color: #1b262d;
+  box-sizing: border-box !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+}
+
+.widget-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  text-align: left;
+}
+
+hr {
+  margin: 0;
+  border-color: #969b9e;
+}
+
+.order-container {
+  display: flex;
+  width: 100%;
+  padding: 12px;
+}
+
+.order-container table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+td,
+th {
+  padding: 6px;
+  font-weight: 400;
+}
+
+.order-container .t-body tr:hover {
+  background-color: #28343a;
+}
