@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PrecisionControl from "./components/PrecisionControl";
 import { setOrders } from "./features/bookSlice";
 import "./OrderBook.css";
 
@@ -9,8 +10,8 @@ function OrderBook() {
   const headers = ["count", "amount", "total", "price"];
   const dispatch = useDispatch();
 
-  const formatFPN = (number) => parseFloat(number).toFixed(4)
-  const absN = (number) => Math.abs(number)
+  const formatFPN = (number) => parseFloat(number).toFixed(4);
+  const absN = (number) => Math.abs(number);
 
   useEffect(() => {
     const subscribe = {
@@ -39,15 +40,13 @@ function OrderBook() {
     };
   }, [instrument, dispatch]);
 
-  // useEffect(() => {
-  //   console.log(orders);
-  // }, [orders]);
-
   const orderHead = (arr) => (
     <thead>
       <tr>
         {arr.map((item, index) => (
-          <th className="c" key={index}>{item.toUpperCase()}</th>
+          <th className="c" key={index}>
+            {item.toUpperCase()}
+          </th>
         ))}
       </tr>
     </thead>
@@ -61,11 +60,11 @@ function OrderBook() {
           <td className="c">{item.count}</td>
           <td>{formatFPN(item.amount)}</td>
           <td>{formatFPN(item.amount * item.count)}</td>
-          <td>{Number(item.price).toLocaleString('en-US')}</td>
+          <td>{Number(item.price).toLocaleString("en-US")}</td>
         </tr>
       ) : (
         <tr key={index}>
-          <td>{Number(item.price).toLocaleString('en-US')}</td>
+          <td>{Number(item.price).toLocaleString("en-US")}</td>
           <td>{formatFPN(absN(item.amount) * item.count)}</td>
           <td>{formatFPN(absN(item.amount))}</td>
           <td className="c">{item.count}</td>
@@ -79,7 +78,10 @@ function OrderBook() {
         <div>
           <b>ORDER BOOK</b> BTC/USD
         </div>
-        <div>Precision</div>
+        <div className="widget-side">
+          <button className="botton">CONNECT</button> &nbsp;
+          <PrecisionControl />
+        </div>
       </div>
       <hr />
       <div className="order-container">

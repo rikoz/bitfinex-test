@@ -63,3 +63,8 @@ td,th.c {
 .asks {
   color: #ff6c6c;
 }
+
+.widget-side {
+  display: flex;
+  align-items: center;
+}

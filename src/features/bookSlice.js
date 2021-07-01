@@ -49,8 +49,6 @@ export const bookSlice = createSlice({
           const side =
             stream.amount === 1 ? "bids" : stream.amount === -1 ? "asks" : null;
 
-          console.log(side)
-
           if (side) {
             const priceIndex = state.orders[side].findIndex(
               (shot) => shot.price === stream.price
@@ -62,7 +60,7 @@ export const bookSlice = createSlice({
       }
     },
     incPrecision: (state) => {
-      if (state.precision < 3) state.precision += 1;
+      if (state.precision < 5) state.precision += 1;
     },
     decPrecision: (state) => {
       if (state.precision > 0) state.precision -= 1;

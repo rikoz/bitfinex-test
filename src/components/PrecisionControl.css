@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  align-items: center;
+  border: 1px solid #03ca9b;
+}
+
+.precision {
+  margin: 0 5px;
+  font-weight: bold;
+  color: #03ca9b;
+  width: 20px;
+  text-align: center;
+}
+
+.button {
+  appearance: none;
+  background: none;
+  /* font-size: 22px; */
+  width: 25px;
+  height: 25px;
+  outline: none;
+  border: 2px solid transparent;
+  color: rgb(53, 233, 164);
+  cursor: pointer;
+  background-color: rgba(112, 76, 182, 0.1);
+  border-radius: 5px;
+  transition: all 0.15s;
+}
+
+.button:hover,
+.button:focus {
+  border: 2px solid rgba(112, 76, 182, 0.4);
+}
+
+.button:active {
+  background-color: rgba(182, 159, 228, 0.2);
+}
