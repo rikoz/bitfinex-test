@@ -2,9 +2,9 @@
   width: 100%;
   min-height: 70vh;
   background-color: #1b262d;
-  box-sizing: border-box !important;
+  /* box-sizing: border-box !important;
   -webkit-box-sizing: border-box !important;
-  -moz-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important; */
 }
 
 .widget-head {
@@ -22,13 +22,15 @@ hr {
 .order-container {
   display: flex;
   width: 100%;
-  padding: 12px;
+  padding: 12px 0px;
 }
 
 .order-container table {
+  align-self: start;
   border-collapse: collapse;
   width: 100%;
-  text-align: center;
+  font-size: 13px;
+  text-align: right;
 }
 
 h1,
@@ -42,6 +44,22 @@ th {
   font-weight: 400;
 }
 
+th {
+  font-weight: bold;
+}
+
+td,th.c {
+  text-align: center;
+}
+
 .order-container .t-body tr:hover {
   background-color: #28343a;
+}
+
+.bids {
+  color: #7fc97f;
+}
+
+.asks {
+  color: #ff6c6c;
 }

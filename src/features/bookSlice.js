@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  orders: [],
+  orders: {
+    bids: [],
+    asks: [],
+  },
   precision: 0,
   loading: false,
   connected: true,
@@ -12,25 +15,49 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     setOrders: (state, { payload }) => {
-      let orders
       if (payload[1].length > 3) {
-        orders = payload[1].map((item) => ({
-          price: item[1][0],
-          count: item[1][1],
-          amount: item[1][2],
-          total: null
+        const mappedShot = payload[1].map((item) => ({
+          price: item[0],
+          count: item[1],
+          amount: item[2],
         }));
-        state.orders = orders
+
+        state.orders.bids = mappedShot.filter((item) => item.amount > 0);
+        state.orders.asks = mappedShot.filter((item) => item.amount < 0);
       } else {
         const stream = {
           price: payload[1][0],
           count: payload[1][1],
           amount: payload[1][2],
         };
+
         if (stream.count > 0) {
-          // stream.amount > 0
-          //   ? state.orders.bids.unshift(stream)
-          //   : state.orders.asks.unshift(stream);
+          const side = stream.amount > 0 ? "bids" : "asks";
+
+          const priceIndex = state.orders[side].findIndex(
+            (shot) => shot.price === stream.price
+          );
+
+          priceIndex !== -1
+            ? state.orders[side].map((shot) =>
+                shot.price === stream.price
+                  ? { ...shot, count: (shot.count += stream.count) }
+                  : shot
+              )
+            : state.orders[side].unshift(stream);
+        } else {
+          const side =
+            stream.amount === 1 ? "bids" : stream.amount === -1 ? "asks" : null;
+
+          console.log(side)
+
+          if (side) {
+            const priceIndex = state.orders[side].findIndex(
+              (shot) => shot.price === stream.price
+            );
+
+            state.orders[side].splice(priceIndex, 1);
+          }
         }
       }
     },
